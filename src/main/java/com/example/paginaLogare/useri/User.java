@@ -3,7 +3,6 @@ package com.example.paginaLogare.useri;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Positive;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
@@ -27,9 +26,15 @@ public record User(
         LocalDateTime accountCreatedOn
 ) {
 
-    public User {
-        if (accountCreatedOn.isAfter(LocalDateTime.now())) {
-            throw new IllegalArgumentException("Account creation date cannot be in the future");
-        }
+    public User(String username, String password, String email) {
+        this(null, username, password, email, LocalDateTime.now());
+    }
+
+    public User(Long id, String username, String password, String email, LocalDateTime accountCreatedOn) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.accountCreatedOn = accountCreatedOn;
     }
 }

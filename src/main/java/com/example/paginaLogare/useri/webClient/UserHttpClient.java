@@ -1,6 +1,8 @@
-package com.example.paginaLogare.useri;
+package com.example.paginaLogare.useri.webClient;
 
+import com.example.paginaLogare.useri.User;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.service.annotation.DeleteExchange;
 import org.springframework.web.service.annotation.GetExchange;
 import org.springframework.web.service.annotation.PostExchange;
@@ -23,13 +25,13 @@ public interface UserHttpClient {
     User findByUsername(@PathVariable String username);
 
     @PostExchange
-    void create(User user);
+    void create(@RequestBody User user);
 
-    @PostExchange("/save")
-    void save(User user);
+//    @PostExchange("/save")
+//    void save(User user);
 
     @PutExchange("/{id}")
-    void update(Long id, User user);
+    void update(@PathVariable Long id, @RequestBody User user);
 
     @DeleteExchange("/{id}")
     void deleteById(@PathVariable Long id);

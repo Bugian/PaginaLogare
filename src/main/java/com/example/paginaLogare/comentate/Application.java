@@ -1,4 +1,4 @@
-//package com.example.paginaLogare;
+//package com.example.paginaLogare.comentate;
 //
 //import com.example.paginaLogare.user.User;
 //import com.example.paginaLogare.user.UserHttpClient;

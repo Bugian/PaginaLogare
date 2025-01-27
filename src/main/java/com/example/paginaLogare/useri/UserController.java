@@ -3,6 +3,7 @@ package com.example.paginaLogare.useri;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import java.util.Optional;
 public class UserController {
 
     private final UserRepository userRepository;
+
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
     public UserController(UserRepository userRepository) {
@@ -105,11 +107,11 @@ public class UserController {
         return userRepository.count();
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/save")
-    public void save(@Valid @RequestBody User user) {
-        log.info("Save user: {}", user);
-        userRepository.save(user);
-    }
+//    @ResponseStatus(HttpStatus.CREATED)
+//    @PutMapping("/api/users/{id}")
+//    public void save(@Valid @RequestBody User user) {
+//        log.info("Save user: {}", user);
+//        userRepository.save(user);
+//    }
 
 }

@@ -1,5 +1,5 @@
-package com.example.paginaLogare.run;
-
-public enum Location {
-    INDOOR, OUTDOOR
-}
+//package com.example.paginaLogare.run;
+//
+//public enum Location {
+//    INDOOR, OUTDOOR
+//}

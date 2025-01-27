@@ -1,10 +1,12 @@
 package com.example.paginaLogare.useri;
 
 
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -51,29 +53,29 @@ public class InMemoryUserRepository implements UserRepository {
         return users.size();
     }
 
-    @Override
-    public void save(User user) {
-        Long generatedId = idGenerator.getAndIncrement();
-        User newUser = new User(
-                generatedId,
-                user.username(),
-                user.password(),
-                user.email(),
-                user.accountCreatedOn()
-        );
-        users.add(newUser);
-    }
+//    @Override
+//    public void save(User user) {
+//        Long generatedId = idGenerator.getAndIncrement();
+//        User newUser = new User(
+//                generatedId,
+//                user.username(),
+//                user.password(),
+//                user.email(),
+//                user.accountCreatedOn()
+//        );
+//        users.add(newUser);
+//    }
 
 //    @Override
-//    public User saveAll(List<User> users) {
-//        users.forEach(this::save);
-//        return users.getLast();
+//    public List<User> saveAll(List<User> usersToSave) {
+//        usersToSave.forEach(this::save);
+//        return usersToSave;
 //    }
 
     @Override
     public Optional<User> findById(Long id) {
         return users.stream().filter(user ->
-                        Long.valueOf(user.id()).equals(id))
+                        user.id().equals(id))
                 .findFirst();
     }
 
@@ -96,7 +98,7 @@ public class InMemoryUserRepository implements UserRepository {
     @Override
     public void deleteById(Long id) {
         log.info("Deleting Run By Id: {}", id);
-        users.removeIf(user -> Long.valueOf(user.id()).equals(id));
+        users.removeIf(user -> user.id().equals(id));
     }
 
     @Override
@@ -109,5 +111,23 @@ public class InMemoryUserRepository implements UserRepository {
     public void deleteByEmail(String email) {
         log.info("Deleting Run By Email: {}", email);
         users.removeIf(user -> user.email().equals(email));
+    }
+
+
+    @PostConstruct
+    private void init() {
+        users.add(new User(
+                idGenerator.getAndIncrement(),
+                "anton",
+                "password",
+                "anton@mail.ru",
+                LocalDateTime.now()));
+
+        users.add(new User(
+                idGenerator.getAndIncrement(),
+                "Wednesday",
+                "pass",
+                "wednesway@mail.ru",
+                LocalDateTime.now()));
     }
 }

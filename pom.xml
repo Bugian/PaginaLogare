@@ -46,6 +46,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+			<version>3.4.2</version>
+		</dependency>
 <!--		 Spring Boot Starter Validation -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -62,12 +67,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
-<!--		Database-->
-<!--		<dependency>-->
-<!--			<groupId>com.h2database</groupId>-->
-<!--			<artifactId>h2</artifactId>-->
-<!--			<scope>runtime</scope>-->
-<!--		</dependency>-->
 		<!-- Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -98,18 +97,6 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.18.2</version>
 		</dependency>
-		<!-- Jakarta Validation -->
-<!--		<dependency>-->
-<!--			<groupId>jakarta.validation</groupId>-->
-<!--			<artifactId>jakarta.validation-api</artifactId>-->
-<!--			<version>3.1.0</version>-->
-<!--		</dependency>-->
-<!--		&lt;!&ndash; Hibernate Validator &ndash;&gt;-->
-<!--		<dependency>-->
-<!--			<groupId>org.hibernate</groupId>-->
-<!--			<artifactId>hibernate-validator</artifactId>-->
-<!--			<version>9.0.0.Beta3</version>-->
-<!--		</dependency>-->
 	</dependencies>
 
 	<build>

@@ -3,27 +3,25 @@ GET http://localhost:8081/api/users
 Content-Type: application/json
 
 ### Find User by ID
-GET http://localhost:8081/api/users/99
+GET http://localhost:8081/api/users/5
 
 ### Find User by Email
-GET http://localhost:8081/api/users/email/testuser@example.com
+GET http://localhost:8081/api/users/email/anton@mail.ru
 Content-Type: application/json
 
 ### Find User by Username
-GET http://localhost:8081/api/users/username/testuser
+GET http://localhost:8081/api/users/username/Wednesday
 Content-Type: application/json
 
 
 ### Create new User
-PPOST http://localhost:8081/api/users
+POST http://localhost:8081/api/users
 Content-Type: application/json
 
 {
-  "id": 1,
-  "username": "testuser",
+  "username": "bibip",
   "password": "password",
-  "email": "testuser@example.com",
-  "accountCreatedOn": "2023-01-01T10:00:00"
+  "email": "bibip@example.com"
 }
 
 
@@ -45,11 +43,11 @@ DELETE http://localhost:8081/api/users/1
 Content-Type: application/json
 
 ### Delete User By Username
-DELETE http://localhost:8081/api/users/username/updateduser
+DELETE http://localhost:8081/api/users/username/testuser
 Content-Type: application/json
 
 ### Delete User By email
-DELETE http://localhost:8081/api/users/email/updateduser@example.com
+DELETE http://localhost:8081/api/users/email/testuser@example.com
 Content-Type: application/json
 
 ### Count Users
