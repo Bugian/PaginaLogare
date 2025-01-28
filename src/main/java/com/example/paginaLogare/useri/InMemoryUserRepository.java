@@ -7,9 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 
@@ -19,6 +17,7 @@ public class InMemoryUserRepository implements UserRepository {
     private final List<User> users = new ArrayList<>();
     private static final Logger log = LoggerFactory.getLogger(InMemoryUserRepository.class);
     private final AtomicLong idGenerator = new AtomicLong(1);
+    private final Queue<Long> availableIds = new LinkedList<>();
 
     @Override
     public List<User> findAll() {
@@ -27,13 +26,13 @@ public class InMemoryUserRepository implements UserRepository {
 
     @Override
     public void create(User user) {
-        Long generatedId = idGenerator.getAndIncrement();
+        Long generatedId = availableIds.isEmpty() ? idGenerator.getAndIncrement() : availableIds.poll();
         User newUser = new User(
                 generatedId,
                 user.username(),
                 user.password(),
                 user.email(),
-                user.accountCreatedOn());
+                LocalDateTime.now());
         users.add(newUser);
     }
 
@@ -98,21 +97,35 @@ public class InMemoryUserRepository implements UserRepository {
     @Override
     public void deleteById(Long id) {
         log.info("Deleting Run By Id: {}", id);
-        users.removeIf(user -> user.id().equals(id));
+        boolean removed = users.removeIf(user -> user.id().equals(id));
+        if (removed) {
+            availableIds.add(id);
+        }
     }
 
     @Override
     public void deleteByUsername(String username) {
         log.info("Deleting Run By Username: {}", username);
-        users.removeIf(user -> user.username().equals(username));
+        Optional<User> userToDelete = users.stream()
+                        .filter(user -> user.username().equals(username))
+                                .findFirst();
+        userToDelete.ifPresent(user -> {
+            users.remove(user);
+            availableIds.add(user.id());
+        });
     }
 
     @Override
     public void deleteByEmail(String email) {
         log.info("Deleting Run By Email: {}", email);
-        users.removeIf(user -> user.email().equals(email));
+        Optional<User> userToDelete = users.stream()
+                        .filter(user -> user.email().equals(email))
+                                .findFirst();
+        userToDelete.ifPresent(user -> {
+            users.remove(user);
+            availableIds.add(user.id());
+        });
     }
-
 
     @PostConstruct
     private void init() {

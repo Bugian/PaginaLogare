@@ -1,9 +1,10 @@
 services:
-  postgres:
-    image: 'postgres:latest'
+  mysql:
+    image: 'mysql:latest'
     environment:
-      - 'POSTGRES_DB=logare'
-      - 'POSTGRES_PASSWORD=password'
-      - 'POSTGRES_USER=doggyrs'
+      - 'MYSQL_ROOT_PASSWORD=rootpassword'
+      - 'MYSQL_DATABASE=pagina_logare'
+      - 'MYSQL_USER=doggyrs'
+      - 'MYSQL_PASSWORD=password'
     ports:
-      - '5432:5432'
+      - '3306:3306'
