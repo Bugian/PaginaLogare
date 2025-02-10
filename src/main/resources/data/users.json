@@ -1,0 +1,55 @@
+{
+  "users": [
+    {
+      "username": "Anoosh",
+      "email": "anoosh@gmail.com",
+      "password": "pass",
+      "accountCreatedOn": "2024-02-25T10:15:00.000000"
+    },
+    {
+      "username": "Elena",
+      "email": "elena@gmail.com",
+      "password": "pass"
+    },
+    {
+      "username": "Mateo",
+      "email": "mateo@gmail.com",
+      "password": "pass"
+    },
+    {
+      "username": "Sofia",
+      "email": "sofia@gmail.com",
+      "password": "pass"
+    },
+    {
+      "username": "Liam",
+      "email": "liam@gmail.com",
+      "password": "pass"
+    },
+    {
+      "username": "Isabella",
+      "email": "isabella@gmail.com",
+      "password": "pass"
+    },
+    {
+      "username": "Noah",
+      "email": "noah@gmail.com",
+      "password": "pass"
+    },
+    {
+      "username": "Ava",
+      "email": "ava@gmail.com",
+      "password": "pass"
+    },
+    {
+      "username": "Lucas",
+      "email": "lucas@gmail.com",
+      "password": "pass"
+    },
+    {
+      "username": "Mia",
+      "email": "mia@gmail.com",
+      "password": "pass"
+    }
+  ]
+}

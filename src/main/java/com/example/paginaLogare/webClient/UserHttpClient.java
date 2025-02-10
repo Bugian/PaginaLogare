@@ -1,4 +1,4 @@
-package com.example.paginaLogare.useri.webClient;
+package com.example.paginaLogare.webClient;
 
 import com.example.paginaLogare.useri.User;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -52,24 +52,23 @@ public class InMemoryUserRepository implements UserRepository {
         return users.size();
     }
 
-//    @Override
-//    public void save(User user) {
-//        Long generatedId = idGenerator.getAndIncrement();
-//        User newUser = new User(
-//                generatedId,
-//                user.username(),
-//                user.password(),
-//                user.email(),
-//                user.accountCreatedOn()
-//        );
-//        users.add(newUser);
-//    }
+    @Override
+    public void save(User user) {
+        Long generatedId = idGenerator.getAndIncrement();
+        User newUser = new User(
+                generatedId,
+                user.username(),
+                user.password(),
+                user.email(),
+                user.accountCreatedOn()
+        );
+        users.add(newUser);
+    }
 
-//    @Override
-//    public List<User> saveAll(List<User> usersToSave) {
-//        usersToSave.forEach(this::save);
-//        return usersToSave;
-//    }
+    @Override
+    public void saveAll(List<User> usersToSave) {
+        usersToSave.forEach(this::create);
+    }
 
     @Override
     public Optional<User> findById(Long id) {

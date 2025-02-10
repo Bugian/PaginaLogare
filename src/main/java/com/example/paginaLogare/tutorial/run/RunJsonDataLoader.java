@@ -26,7 +26,7 @@
 //    @Override
 //    public void run(String... args) throws Exception {
 //        if(runRepository.count() == 0) {
-//            try (InputStream inputStream = TypeReference.class.getResourceAsStream("/data/runs.json")) {
+//            try (InputStream inputStream = TypeReference.class.getResourceAsStream("/data/users.json")) {
 //                Runs allRuns = objectMapper.readValue(inputStream, Runs.class);
 //                log.info("Reading {} runs from JSON data and saving to a database.", allRuns.runs().size());
 //                runRepository.saveAll(allRuns.runs());
