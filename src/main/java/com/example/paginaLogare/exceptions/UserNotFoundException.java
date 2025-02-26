@@ -1,4 +1,4 @@
-package com.example.paginaLogare.useri;
+package com.example.paginaLogare.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

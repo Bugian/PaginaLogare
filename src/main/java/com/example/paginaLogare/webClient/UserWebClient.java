@@ -1,6 +1,6 @@
 package com.example.paginaLogare.webClient;
 
-import com.example.paginaLogare.useri.User;
+import com.example.paginaLogare.user.User;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Arrays;

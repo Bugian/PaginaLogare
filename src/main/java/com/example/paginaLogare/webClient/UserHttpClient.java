@@ -1,6 +1,6 @@
 package com.example.paginaLogare.webClient;
 
-import com.example.paginaLogare.useri.User;
+import com.example.paginaLogare.user.User;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.service.annotation.DeleteExchange;
