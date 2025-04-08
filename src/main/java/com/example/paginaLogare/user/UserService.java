@@ -81,7 +81,6 @@ public class UserService {
     }
 
     public void save(@Valid User user) {
-<<<<<<< HEAD
         if (user.getId() == null) {
             throw new RuntimeException("User ID cannot be null for update");
         }
@@ -110,9 +109,6 @@ public class UserService {
             String hashedPassword = passwordHasher.hash(user.getPassword());
             user.setPassword(hashedPassword);
         }
-    
-=======
->>>>>>> 298ad7185afad55e0230d978f1dcaead11b16585
         userRepository.save(user);
     }
 }
