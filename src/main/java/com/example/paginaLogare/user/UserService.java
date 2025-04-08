@@ -51,11 +51,21 @@ public class UserService {
     }
 
     public void deleteByUsername(String username) {
-        userRepository.deleteByUsername(username);
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found with username: " + username));
+            userRepository.delete(user);
     }
 
     public void deleteByEmail(String email) {
-        userRepository.deleteByEmail(email);
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
+            userRepository.delete(user);
+    }
+
+    public void deleteById(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+            userRepository.delete(user);
     }
 
     public long count() {
@@ -69,6 +79,35 @@ public class UserService {
     }
 
     public void save(@Valid User user) {
+        if (user.getId() == null) {
+            throw new RuntimeException("User ID cannot be null for update");
+        }
+    
+        User existingUser = userRepository.findById(user.getId())
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + user.getId()));
+    
+        // Check for duplicate username (excluding current user)
+        userRepository.findByUsername(user.getUsername())
+                .ifPresent(u -> {
+                    if (!u.getId().equals(user.getId())) {
+                        throw new RuntimeException("Username already exists");
+                    }
+                });
+    
+        // Check for duplicate email (excluding current user)
+        userRepository.findByEmail(user.getEmail())
+                .ifPresent(u -> {
+                    if (!u.getId().equals(user.getId())) {
+                        throw new RuntimeException("Email already exists");
+                    }
+                });
+    
+        // Only hash if password has changed
+        if (!user.getPassword().equals(existingUser.getPassword())) {
+            String hashedPassword = passwordHasher.hash(user.getPassword());
+            user.setPassword(hashedPassword);
+        }
+    
         userRepository.save(user);
     }
 }
