@@ -137,9 +137,15 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public boolean login(@RequestParam String username, @RequestParam String password) {
-        log.info("Login user: {}", username);
-        return userService.checkPassword(username, password);
+    public ResponseEntity<Map<String, Object>> login(@RequestParam String username, @RequestParam String password) {
+        log.info("Login attmept for user: {}", username);
+        boolean isValid = userService.checkPassword(username, password);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("succes", isValid);
+        response.put("message", isValid ? "Login successful" : "Invalid credentials");
+
+        return ResponseEntity.ok(response);
     }
 
 }

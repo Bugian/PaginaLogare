@@ -1,14 +1,7 @@
--- First drop the table if it exists
-DROP TABLE IF EXISTS user;
-
--- Then create the table with correct column names
-CREATE TABLE user (
-    id INT NOT NULL AUTO_INCREMENT,
-    username VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
+CREATE TABLE IF NOT EXISTS user (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    accountCreatedOn TIMESTAMP NOT NULL,
-    PRIMARY KEY (id),
-    UNIQUE KEY (username),
-    UNIQUE KEY (email)
+    email VARCHAR(255) NOT NULL UNIQUE,
+    account_created_on TIMESTAMP NOT NULL
 );

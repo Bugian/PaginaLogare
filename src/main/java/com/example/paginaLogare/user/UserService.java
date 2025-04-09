@@ -36,7 +36,7 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public void create(User user) {
+    public User create(User user) {
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
             throw new RuntimeException("Username already exists");
         }
@@ -47,7 +47,7 @@ public class UserService {
         String hashedPassword = passwordHasher.hash(user.getPassword());
         user.setPassword(hashedPassword);
         user.setAccountCreatedOn(LocalDateTime.now());
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     public void deleteByUsername(String username) {
